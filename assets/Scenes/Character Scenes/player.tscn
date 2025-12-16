@@ -10,7 +10,7 @@ height = 2.008789
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_qrc4i")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
 shape = SubResource("CapsuleShape3D_ogqes")
 
 [node name="Texture plane" parent="." instance=ExtResource("2_qrc4i")]
