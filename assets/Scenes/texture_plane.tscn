@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnomjlq45576p"]
 
-[ext_resource type="Shader" uid="uid://bt37qo31t4tqs" path="res://assets/Scenes/player.gdshader" id="1_pycy2"]
-[ext_resource type="Texture2D" uid="uid://ckq2uva674h8t" path="res://assets/textures/debug Textures/debug character.png" id="2_afcu1"]
+[ext_resource type="Shader" uid="uid://bt37qo31t4tqs" path="res://assets/Art/shader files/player.gdshader" id="1_pycy2"]
+[ext_resource type="Texture2D" uid="uid://ckq2uva674h8t" path="res://assets/Art/textures/debug Textures/debug character.png" id="2_afcu1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ay7pi"]
 render_priority = 0

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dux71b7uken45"
-path.s3tc="res://.godot/imported/tex_DebugGrid.png-a5dde269543ff8017a48d21204a1af77.s3tc.ctex"
+uid="uid://ckqhodt32ut1u"
+path.s3tc="res://.godot/imported/RainbowDebugTexture.png-8e97aea5efe7fbf51b47d72415f28d7f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/debug Textures/tex_DebugGrid.png"
-dest_files=["res://.godot/imported/tex_DebugGrid.png-a5dde269543ff8017a48d21204a1af77.s3tc.ctex"]
+source_file="res://assets/Art/textures/debug Textures/RainbowDebugTexture.png"
+dest_files=["res://.godot/imported/RainbowDebugTexture.png-8e97aea5efe7fbf51b47d72415f28d7f.s3tc.ctex"]
 
 [params]
 
