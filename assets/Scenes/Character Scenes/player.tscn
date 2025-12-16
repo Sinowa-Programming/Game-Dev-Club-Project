@@ -7,7 +7,7 @@
 radius = 1.0043945
 height = 2.008789
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_qrc4i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
