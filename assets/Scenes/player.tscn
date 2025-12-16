@@ -1,18 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl2xpbavycnmk"]
+[gd_scene load_steps=4 format=3 uid="uid://dl2xpbavycnmk"]
 
 [ext_resource type="Script" uid="uid://b8ryy2i73it2t" path="res://assets/scripts/player.gd" id="1_qrc4i"]
-[ext_resource type="Shader" uid="uid://bt37qo31t4tqs" path="res://assets/Scenes/player.gdshader" id="2_qrc4i"]
-[ext_resource type="Texture2D" uid="uid://ckq2uva674h8t" path="res://assets/textures/debug Textures/debug character.png" id="3_0o5ai"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay7pi"]
-render_priority = 0
-shader = ExtResource("2_qrc4i")
-shader_parameter/albedo_texture = ExtResource("3_0o5ai")
-shader_parameter/alpha_cutoff = 0.5
-shader_parameter/height_scale = 1.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_0o5ai"]
-material = SubResource("ShaderMaterial_ay7pi")
+[ext_resource type="PackedScene" uid="uid://dnomjlq45576p" path="res://assets/Scenes/texture_plane.tscn" id="2_qrc4i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogqes"]
 radius = 1.0043945
@@ -21,10 +10,7 @@ height = 2.008789
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_qrc4i")
 
-[node name="Texture plane" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-cast_shadow = 2
-mesh = SubResource("PlaneMesh_0o5ai")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ogqes")
+
+[node name="Texture plane" parent="." instance=ExtResource("2_qrc4i")]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnomjlq45576p"]
+
+[ext_resource type="Shader" uid="uid://bt37qo31t4tqs" path="res://assets/Scenes/player.gdshader" id="1_pycy2"]
+[ext_resource type="Texture2D" uid="uid://ckq2uva674h8t" path="res://assets/textures/debug Textures/debug character.png" id="2_afcu1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay7pi"]
+render_priority = 0
+shader = ExtResource("1_pycy2")
+shader_parameter/albedo_texture = ExtResource("2_afcu1")
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/height_scale = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ap12n"]
+material = SubResource("ShaderMaterial_ay7pi")
+
+[node name="Texture plane" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+cast_shadow = 2
+mesh = SubResource("PlaneMesh_ap12n")
