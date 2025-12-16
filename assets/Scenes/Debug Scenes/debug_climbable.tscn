@@ -17,6 +17,7 @@ material_override = SubResource("StandardMaterial3D_i4fdf")
 mesh = SubResource("BoxMesh_2v0xb")
 skeleton = NodePath("../..")
 script = ExtResource("2_i4fdf")
+climb_speed = 200
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -27,6 +28,7 @@ shape = SubResource("BoxShape3D_emmmr")
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_2v0xb")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
