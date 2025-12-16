@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp05i45oo3l2k"]
+[gd_scene load_steps=9 format=3 uid="uid://dp05i45oo3l2k"]
 
 [ext_resource type="PackedScene" uid="uid://dl2xpbavycnmk" path="res://assets/Scenes/Character Scenes/player.tscn" id="1_es4wb"]
-[ext_resource type="Texture2D" uid="uid://ckqhodt32ut1u" path="res://assets/Art/textures/debug Textures/RainbowDebugTexture.png" id="2_b4ois"]
 [ext_resource type="Texture2D" uid="uid://dksyyfaelo728" path="res://assets/Art/textures/debug Textures/tex_DebugAlignment.png" id="2_tetbm"]
 [ext_resource type="Texture2D" uid="uid://21kkjsaqkbsf" path="res://assets/Art/textures/debug Textures/tex_DebugUVTiles.png" id="3_tetbm"]
+[ext_resource type="PackedScene" uid="uid://fuanx1tqxnll" path="res://assets/Scenes/Debug Scenes/debug_climbable.tscn" id="4_aqniv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2o6k"]
 albedo_texture = ExtResource("2_tetbm")
@@ -14,9 +14,6 @@ albedo_texture = ExtResource("2_tetbm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0qyn"]
 albedo_texture = ExtResource("3_tetbm")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48nw5"]
-albedo_texture = ExtResource("2_b4ois")
 
 [node name="Debug Level" type="Node3D"]
 
@@ -34,7 +31,7 @@ position = Vector2(0, -1)
 transform = Transform3D(-82.85929, 0, 0, 0, 1, 0, 0, 0, -28.769348, 0, -6.4039516, 0)
 material_override = SubResource("StandardMaterial3D_h2o6k")
 mesh = SubResource("BoxMesh_es4wb")
-skeleton = NodePath("../MeshInstance3D")
+skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level/Geometry/MeshInstance3D3"]
 
@@ -45,7 +42,7 @@ shape = SubResource("BoxShape3D_tetbm")
 transform = Transform3D(16.374945, 0, 0, 0, 1, 0, 0, 0, -46.904747, 0, -3.2019758, 0)
 material_override = SubResource("StandardMaterial3D_a0qyn")
 mesh = SubResource("BoxMesh_es4wb")
-skeleton = NodePath("../MeshInstance3D")
+skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level/Geometry/MeshInstance3D2"]
 
@@ -63,28 +60,6 @@ skeleton = NodePath("../MeshInstance3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Geometry/MeshInstance3D2/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_tetbm")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level/Geometry"]
-transform = Transform3D(12.452846, 0, 0, 0, 5.78619, 0, 0, 0, 8.785541, -0.23104477, 0.04331255, -17.53191)
-material_override = SubResource("StandardMaterial3D_48nw5")
-mesh = SubResource("BoxMesh_es4wb")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Level/Geometry/MeshInstance3D4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Geometry/MeshInstance3D4/StaticBody3D"]
-shape = SubResource("BoxShape3D_tetbm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Geometry"]
-transform = Transform3D(15.986341, 0, 0, 0, 1, 0, 0, 0, 2.9640412, -0.7396381, -2.2720509, -7.5797358)
-material_override = SubResource("StandardMaterial3D_48nw5")
-mesh = SubResource("BoxMesh_es4wb")
-skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Level/Geometry/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Geometry/MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_tetbm")
-
 [node name="Lights" type="Node" parent="Level"]
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Level/Lights"]
@@ -100,3 +75,6 @@ light_energy = 16.0
 shadow_enabled = true
 spot_range = 56.023094
 spot_angle = 43.59375
+
+[node name="Debug Climbable" parent="." instance=ExtResource("4_aqniv")]
+transform = Transform3D(-15.518924, 0, 0, 0, 13.919675, 0, 0, 0, 3.1677434, -0.3670826, 4.8518248, -17.164864)

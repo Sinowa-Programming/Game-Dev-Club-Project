@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var fall_acceleration = 75
 # Climbing speed when touching a wall
 @export var climb_speed = 20
+var current_climb_speed = 0
 var can_climb = false
 # Variable to store vertical velocity
 var vertical_velocity = 0
@@ -41,9 +42,9 @@ func _physics_process(delta):
 		if can_climb:
 			print("Player can climb this wall!")
 		if Input.is_action_pressed("Move_Forward"):
-			vertical_velocity = climb_speed * delta# Climb up
+			vertical_velocity = current_climb_speed * delta  # Use wall-specific speed
 		elif Input.is_action_pressed("Move_Backward"):
-			vertical_velocity = climb_speed * delta # Optionally move down
+			vertical_velocity = -current_climb_speed * delta  # Optionally move down
 
 	# Assign vertical velocity to target_velocity
 	target_velocity.y = vertical_velocity  # Update vertical velocity in target_velocity
