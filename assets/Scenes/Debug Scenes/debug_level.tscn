@@ -60,6 +60,25 @@ skeleton = NodePath("../MeshInstance3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Geometry/MeshInstance3D2/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_tetbm")
 
+[node name="Debug Climbable" parent="Level/Geometry" instance=ExtResource("4_aqniv")]
+transform = Transform3D(-15.518924, 0, 0, 0, 13.919675, 0, 0, 0, 3.1677434, -0.3670826, 3.9757452, -21.820202)
+skeleton = NodePath("../../../..")
+climb_speed = 400
+
+[node name="Debug Climbable2" parent="Level/Geometry" instance=ExtResource("4_aqniv")]
+transform = Transform3D(15.15252, 0, 0, 0, 9.719344, 0, 0, 0, 1, -26.121641, -1.069653, -12.685045)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level/Geometry"]
+transform = Transform3D(34.05269, 0, 0, 0, 1.0000002, 0, 0, 0, 14.259696, -25.222933, 3.31524, -19.60672)
+material_override = SubResource("StandardMaterial3D_h2o6k")
+mesh = SubResource("BoxMesh_es4wb")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Geometry/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Geometry/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("BoxShape3D_tetbm")
+
 [node name="Lights" type="Node" parent="Level"]
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Level/Lights"]
@@ -75,6 +94,3 @@ light_energy = 16.0
 shadow_enabled = true
 spot_range = 56.023094
 spot_angle = 43.59375
-
-[node name="Debug Climbable" parent="." instance=ExtResource("4_aqniv")]
-transform = Transform3D(-15.518924, 0, 0, 0, 13.919675, 0, 0, 0, 3.1677434, -0.3670826, 4.8518248, -17.164864)

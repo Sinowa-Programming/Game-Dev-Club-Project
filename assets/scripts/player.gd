@@ -10,11 +10,14 @@ var current_climb_speed = 0
 var can_climb = false
 # Variable to store vertical velocity
 var vertical_velocity = 0
-
+# Will cause noise by other things, like climbing and rustling
+var current_noise_level = 0;
 func _physics_process(delta):
 	# Create a local variable to store the input direction.
 	var direction = Vector3.ZERO
-
+	if current_noise_level > 0:
+		print("Noisy! Your noise is: ")
+		print(current_noise_level)
 	# Check for each move input and update the direction accordingly.
 	if Input.is_action_pressed("Move_Right"):
 		direction.x += 1
@@ -40,11 +43,10 @@ func _physics_process(delta):
 	# Handling climbing when touching a wall
 	if is_on_wall():
 		if can_climb:
-			print("Player can climb this wall!")
-		if Input.is_action_pressed("Move_Forward"):
-			vertical_velocity = current_climb_speed * delta  # Use wall-specific speed
-		elif Input.is_action_pressed("Move_Backward"):
-			vertical_velocity = -current_climb_speed * delta  # Optionally move down
+			if Input.is_action_pressed("Move_Forward"):
+				vertical_velocity = current_climb_speed * delta  # Use wall-specific speed
+			elif Input.is_action_pressed("Move_Backward"):
+				vertical_velocity = -current_climb_speed * delta  # Optionally move down
 
 	# Assign vertical velocity to target_velocity
 	target_velocity.y = vertical_velocity  # Update vertical velocity in target_velocity
