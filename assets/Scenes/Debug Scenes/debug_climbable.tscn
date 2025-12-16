@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://fuanx1tqxnll"]
+
+[ext_resource type="Texture2D" uid="uid://ckqhodt32ut1u" path="res://assets/Art/textures/debug Textures/RainbowDebugTexture.png" id="1_v14o7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4fdf"]
+albedo_texture = ExtResource("1_v14o7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2v0xb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_emmmr"]
+
+[node name="Debug Climbable" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_i4fdf")
+mesh = SubResource("BoxMesh_2v0xb")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_emmmr")
