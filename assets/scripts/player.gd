@@ -1,56 +1,77 @@
 extends CharacterBody3D
 
-# How fast the player moves in meters per second.
-@export var speed = 14
-# The downward acceleration when in the air, in meters per second squared.
-@export var fall_acceleration = 75
-# Climbing speed when touching a wall
-@export var climb_speed = 20
-var current_climb_speed = 0
-var can_climb = false
-# Variable to store vertical velocity
-var vertical_velocity = 0
-# Will cause noise by other things, like climbing and rustling
-var current_noise_level = 0;
-func _physics_process(delta):
-	# Create a local variable to store the input direction.
-	var direction = Vector3.ZERO
-	if current_noise_level > 0:
-		print("Noisy! Your noise is: ")
-		print(current_noise_level)
-	# Check for each move input and update the direction accordingly.
-	if Input.is_action_pressed("Move_Right"):
-		direction.x += 1
-	if Input.is_action_pressed("Move_Left"):
-		direction.x -= 1
-	if Input.is_action_pressed("Move_Backward"):
-		direction.z += 1
-	if Input.is_action_pressed("Move_Forward"):
-		direction.z -= 1
+# --- Movement settings ---
+@export var speed: float = 14
+@export var fall_acceleration: float = 75
 
-	# Normalize the direction vector to ensure consistent speed when moving diagonally.
-	direction = direction.normalized()
+# --- Climbing settings ---
+@export var climb_speed: float = 20  # Default climb speed
+var current_climb_speed: float = 0
+var can_climb: bool = false
 
-	# Calculate the target velocity based on input direction and speed.
+# --- Vertical motion ---
+var vertical_velocity: float = 0
+
+# --- Noise system ---
+var current_noise_level: float = 0
+
+func _physics_process(delta: float) -> void:
+	var direction = get_input_direction()
+	
+	# Horizontal velocity
 	var target_velocity = direction * speed
 
-	# Manage vertical velocity for falling
+	# Vertical velocity (falling + climbing)
+	vertical_velocity = handle_vertical_movement(delta)
+	target_velocity.y = vertical_velocity
+
+	# Move the character
+	velocity = target_velocity
+	move_and_slide()
+
+	# Noise feedback
+	handle_noise(delta)
+
+# --- Get normalized input direction ---
+func get_input_direction() -> Vector3:
+	var dir = Vector3.ZERO
+	if Input.is_action_pressed("Move_Right"):
+		dir.x += 1
+	if Input.is_action_pressed("Move_Left"):
+		dir.x -= 1
+	if Input.is_action_pressed("Move_Backward"):
+		dir.z += 1
+	if Input.is_action_pressed("Move_Forward"):
+		dir.z -= 1
+	return dir.normalized()
+
+# --- Handle vertical movement and climbing ---
+func handle_vertical_movement(delta: float) -> float:
+	var new_vertical_velocity = vertical_velocity
+
+	# Gravity
 	if not is_on_floor():
-		vertical_velocity -= fall_acceleration * delta  # Apply falling acceleration
+		new_vertical_velocity -= fall_acceleration * delta
 	else:
-		vertical_velocity = 0  # Reset the vertical velocity when on the floor
+		new_vertical_velocity = 0
 
-	# Handling climbing when touching a wall
-	if is_on_wall():
-		if can_climb:
-			if Input.is_action_pressed("Move_Forward"):
-				vertical_velocity = current_climb_speed * delta  # Use wall-specific speed
-			elif Input.is_action_pressed("Move_Backward"):
-				vertical_velocity = -current_climb_speed * delta  # Optionally move down
+	# Climbing
+	if is_on_wall() and can_climb:
+		new_vertical_velocity = 0
+		if Input.is_action_pressed("Move_Forward"):
+			new_vertical_velocity = current_climb_speed * delta
+			add_noise(5)
+		elif Input.is_action_pressed("Move_Backward"):
+			new_vertical_velocity = -current_climb_speed * delta
+			add_noise(5)
 
-	# Assign vertical velocity to target_velocity
-	target_velocity.y = vertical_velocity  # Update vertical velocity in target_velocity
+	return new_vertical_velocity
 
-	# Move the character.
-	velocity = target_velocity  # Assign the target velocity to the character's velocity
-	move_and_slide()  # Call move_and_slide with the correct velocity
+# --- Noise system ---
+func add_noise(amount: float) -> void:
+	current_noise_level += amount
+
+func handle_noise(delta: float) -> void:
+	if current_noise_level > 0:
+		print("Noisy! Current noise level: ", current_noise_level)
+		current_noise_level = max(current_noise_level - delta * 2, 0)
