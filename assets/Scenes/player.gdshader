@@ -1,19 +1,22 @@
 shader_type spatial;
 
-uniform sampler2D texture; // Texture for height map
-uniform float height_scale = 1.0; // Scale for height
+uniform sampler2D height_texture : hint_default_black;
+uniform float height_scale = 1.0;
+uniform float alpha_cutoff = 0.5;
 
 void vertex() {
-    vec2 uv = UV; // Get UV coordinates
-    vec4 texColor = texture(texture, uv); // Sample the texture
-    float height = texColor.r; // Use the red channel for height
+    vec4 tex = texture(height_texture, UV);
 
-    // Displace the vertex position based on the height value.
-    VERTEX.y += height * height_scale; // Adjust Y position for displacement
+    float height = tex.r * tex.a;
+    VERTEX.y += height * height_scale;
 }
 
 void fragment() {
-    vec2 uv = UV; // Get UV coordinates
-    vec4 texColor = texture(texture, uv); // Sample the texture
-    ALBEDO = texColor.rgb; // Set the color of the surface
+    vec4 tex = texture(height_texture, UV);
+
+    if (tex.a < alpha_cutoff) {
+        discard;
+    }
+
+    ALBEDO = tex.rgb;
 }
