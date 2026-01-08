@@ -15,6 +15,10 @@ run/main_scene="uid://dp05i45oo3l2k"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+SignalBus="*res://assets/scripts/Autoload/SignalBus.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

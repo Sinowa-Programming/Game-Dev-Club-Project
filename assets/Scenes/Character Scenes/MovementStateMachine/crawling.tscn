@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw8qjaydrnqyy"]
+
+[ext_resource type="Script" uid="uid://d4yxw2qe7ui2" path="res://assets/scripts/Player/MovementStateMachine/crawling.gd" id="1_7tk47"]
+
+[node name="Crawling" type="Node"]
+script = ExtResource("1_7tk47")

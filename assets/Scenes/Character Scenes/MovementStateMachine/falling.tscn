@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://yr06jn17g4nj"]
+
+[ext_resource type="Script" uid="uid://7dahk3hsbn0k" path="res://assets/scripts/Player/MovementStateMachine/falling.gd" id="1_fida6"]
+
+[node name="Falling" type="Node"]
+script = ExtResource("1_fida6")

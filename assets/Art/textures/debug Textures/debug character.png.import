@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckq2uva674h8t"
-path.s3tc="res://.godot/imported/debug character.png-d072b20fd06753152010b1e318e07e50.s3tc.ctex"
+path="res://.godot/imported/debug character.png-d072b20fd06753152010b1e318e07e50.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/Art/textures/debug Textures/debug character.png"
-dest_files=["res://.godot/imported/debug character.png-d072b20fd06753152010b1e318e07e50.s3tc.ctex"]
+dest_files=["res://.godot/imported/debug character.png-d072b20fd06753152010b1e318e07e50.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

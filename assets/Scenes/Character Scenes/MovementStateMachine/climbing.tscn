@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7y08j1ggxdgf"]
+
+[ext_resource type="Script" uid="uid://dwxd5ny0v0opx" path="res://assets/scripts/Player/MovementStateMachine/climbing.gd" id="1_dj0or"]
+
+[node name="Climbing" type="Node"]
+script = ExtResource("1_dj0or")

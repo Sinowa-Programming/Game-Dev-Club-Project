@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3ikwqx47hg2x"]
+
+[ext_resource type="Script" uid="uid://ddsnlja75ocms" path="res://assets/scripts/EntityStateMachine/entity_state_machine.gd" id="1_ruval"]
+
+[node name="EntityStateMachine" type="Node"]
+script = ExtResource("1_ruval")

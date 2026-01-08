@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs2jcmfdny23q"]
+
+[ext_resource type="Script" uid="uid://cxia8wi3kmuq2" path="res://assets/scripts/Player/MovementStateMachine/idle.gd" id="1_gl3cf"]
+
+[node name="Idle" type="Node"]
+script = ExtResource("1_gl3cf")

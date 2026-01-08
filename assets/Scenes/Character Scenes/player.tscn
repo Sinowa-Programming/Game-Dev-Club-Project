@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl2xpbavycnmk"]
+[gd_scene load_steps=9 format=3 uid="uid://dl2xpbavycnmk"]
 
-[ext_resource type="Script" uid="uid://b8ryy2i73it2t" path="res://assets/scripts/player.gd" id="1_qrc4i"]
+[ext_resource type="Script" uid="uid://b8ryy2i73it2t" path="res://assets/scripts/Player/player.gd" id="1_qrc4i"]
 [ext_resource type="PackedScene" uid="uid://dnomjlq45576p" path="res://assets/Scenes/texture_plane.tscn" id="2_qrc4i"]
+[ext_resource type="PackedScene" uid="uid://d3ikwqx47hg2x" path="res://assets/Scenes/StateMachine/entity_state_machine.tscn" id="3_hkmy7"]
+[ext_resource type="PackedScene" uid="uid://cs2jcmfdny23q" path="res://assets/Scenes/Character Scenes/MovementStateMachine/idle.tscn" id="4_8o1d6"]
+[ext_resource type="PackedScene" uid="uid://yr06jn17g4nj" path="res://assets/Scenes/Character Scenes/MovementStateMachine/falling.tscn" id="5_3yorv"]
+[ext_resource type="PackedScene" uid="uid://c7y08j1ggxdgf" path="res://assets/Scenes/Character Scenes/MovementStateMachine/climbing.tscn" id="6_6oc7p"]
+[ext_resource type="PackedScene" uid="uid://dw8qjaydrnqyy" path="res://assets/Scenes/Character Scenes/MovementStateMachine/crawling.tscn" id="7_o7d0l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogqes"]
 radius = 1.0043945
@@ -11,6 +16,21 @@ height = 2.008789
 script = ExtResource("1_qrc4i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ogqes")
 
 [node name="Texture plane" parent="." instance=ExtResource("2_qrc4i")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1, 0)
+
+[node name="MovementStateMachine" parent="." node_paths=PackedStringArray("entity", "starting_state") instance=ExtResource("3_hkmy7")]
+id = "Movement"
+entity = NodePath("..")
+starting_state = NodePath("Idle")
+
+[node name="Idle" parent="MovementStateMachine" instance=ExtResource("4_8o1d6")]
+
+[node name="Falling" parent="MovementStateMachine" instance=ExtResource("5_3yorv")]
+
+[node name="Climbing" parent="MovementStateMachine" instance=ExtResource("6_6oc7p")]
+
+[node name="Crawling" parent="MovementStateMachine" instance=ExtResource("7_o7d0l")]
